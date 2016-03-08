@@ -1,10 +1,43 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app='ngWeatherList'>
 <head>
 	<meta charset="UTF-8">
-	<title>WebSite Add</title>
+	<title>Weather List</title>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0/angular.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.css">
+	<link rel="stylesheet" href="css/index.css">
 </head>
 <body>
+	<div class='container inputbar' ng-controller='ngWeatherListController'>
+		<div class="row">
+			<div class="input-group col-md-offset-3 col-md-6 col-sm-12">
+				<input type="text" class="form-control text-center" placeholder="enter a location" ng-keyup='enter($event)' ng-model='inputLocation'>
+				<span class='input-group-btn'>
+					<button class="btn btn-primary" ng-click='saveLocation()' type='button' style='color: white;'>Add to Locations</button>
+				</span>						
+			</div>
+		</div>
+		
+		<br>
+		<hr>
+		<br>
+		
+		<div class="row">
+			<div class="col-md-offset-3 col-md-6 col-sm-12">
+				<ol>
+					<li class= 'well' ng-repeat='aLocation in locationList'>
+						{{aLocation}} 
+						<span class='glyphicon glyphicon-arrow-up pull-right btn' ng-if='$index !=0' ng-click='moveUp(aLocation)'> </span>
+						<span class='glyphicon glyphicon-arrow-down pull-right btn' ng-if='$index != locationList.length-1' ng-click='moveDown(aLocation)'> </span>
+						<button class="btn btn-info btn-sm pull-right" ng-click='editList(aLocation)'>Edit</button>
+						<button style='color: red;' class="btn btn-danger btn-small pull-right" ng-click='removeSite(aLocation)'>X</button>
+					</li>					
+				</ol>
+			</div>
+		</div>
+	</div>
 	
+	<script src='js/app.js'></script>
+</body>
 </body>
 </html>
